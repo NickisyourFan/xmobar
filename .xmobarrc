@@ -11,7 +11,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %battery% | %multicpu% | %coretemp% | %memory% }{ %KDFW% | %date% "
+   , template = " %myuser% | %battery% | %multicpu% }{ %KDFW% | %date% "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -38,7 +38,7 @@ Config {
    , commands = 
 
         -- weather monitor
-        [ Run Weather "KDFW" [ "--template", "<skyCondition> | <fc=#4682B4><tempF></fc>° | <fc=#4682B4><rh></fc>%"
+        [ Run Weather "KDFW" [ "--template", "<skyCondition> | <fc=#4682B4><tempF></fc>° | <fc=#4682B4><windMph></fc> mph <windCardinal>"
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
@@ -96,6 +96,7 @@ Config {
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%a %b %_d %Y %T</fc>" "date" 10
+        , Run Date           "<fc=#FFC07F>%a %b %_d %Y %T</fc>" "date" 10
+        , Run Com "whoami" [] "myuser" 0
         ]
    }
